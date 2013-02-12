@@ -1,0 +1,59 @@
+<html lang="en" manifest="cache.manifest">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Example of CRUD off-line using HTML5 + SQLite3 + JQuery</title>
+
+  <link href="assets/vendor/jquery.mobile-1.2.0/jquery.mobile-1.2.0.css" rel="stylesheet">
+  <link href="assets/css/style.css" rel="stylesheet">
+</head>
+
+<body>
+  <div data-role="page">
+
+    <div data-role="header">
+      <h1>Example of CRUD off-line</h1>
+      <a href="#" id="btnAdd" class="button ui-btn-right" data-theme="b" data-icon="plus" onClick="prepareAdd()">Add</a>
+    </div>
+
+    <div data-role="content">
+      <form>
+        <label for="Name">Name</label>
+        <input type="text" id="name">
+
+        <label for="Phone">Phone</label>
+        <input type="text" id="phone">
+
+        <input type="hidden" id="id"/>
+
+        <div class="ui-body-b ui-body">
+          <button id="btnSave" type="button" data-inline="true" data-icon="refresh">Save</button>
+          <button id="btnCancel" type="button" data-inline="true" data-icon="plus" data-theme="c" onClick="cancelAction()">Cancel</button>
+        </div>
+      </form>
+
+      <div class="ui-body">
+        <div id="results"></div>
+      </div>
+    </div>
+
+    <div data-role="footer">
+		  <h3>JQuery Mobile</h3>
+      <button class="button ui-btn-right" type="button" data-icon="alert" data-theme="e" onClick="deleteAll()">Delete all</button>
+    </div>
+  </div>
+
+  <script src="assets/vendor/jquery-1.8.3/jquery-1.8.3.js"></script>
+  <script src="assets/vendor/jquery.mobile-1.2.0/jquery.mobile-1.2.0.js"></script>
+  <script src="assets/vendor/backbone-0.9.9/underscore.js"></script>
+  <script src="assets/vendor/backbone-0.9.9/json2.js"></script>
+  <script src="assets/vendor/backbone-0.9.9/backbone.js"></script>
+  <script src="assets/vendor/backbone-0.9.9/backbone-localstorage.js"></script>
+
+  <script src="assets/js/models/contact.js"></script>
+  <script src="assets/js/collections/contacts.js"></script>
+  <script src="assets/js/application.js"></script>
+</body>
+</html>

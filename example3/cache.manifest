@@ -1,0 +1,26 @@
+CACHE MANIFEST
+# Version: 15.01.2013.00
+# Changing the version date above the whole cache will be refreshed.
+
+CACHE:
+index.html
+
+assets/vendor/jquery-1.8.3/jquery-1.8.3.js
+
+assets/vendor/jquery.mobile-1.2.0/jquery.mobile-1.2.0.css
+assets/vendor/jquery.mobile-1.2.0/jquery.mobile-1.2.0.js
+assets/vendor/jquery.mobile-1.2.0/images/ajax-loader.gif
+assets/vendor/jquery.mobile-1.2.0/images/icons-18-black.png
+assets/vendor/jquery.mobile-1.2.0/images/icons-18-white.png
+assets/vendor/jquery.mobile-1.2.0/images/icons-36-black.png
+assets/vendor/jquery.mobile-1.2.0/images/icons-36-white.png
+
+assets/vendor/backbone-0.9.9/underscore.js
+assets/vendor/backbone-0.9.9/json2.js
+assets/vendor/backbone-0.9.9/backbone.js
+assets/vendor/backbone-0.9.9/backbone-localstorage.js
+
+assets/js/application.js
+assets/js/models/contact.js
+assets/js/collections/contacts.js
+assets/css/style.css
