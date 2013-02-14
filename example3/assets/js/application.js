@@ -47,31 +47,17 @@ function deleteAll() {
 function showRecords() {
     console.debug('called showRecords()');
 
-    html = '';
-    $('#results').html('');
-
     if (!contacts.isEmpty()) {
-        html = html + '  <ul data-role="listview">';
+        template = $('#contact_list-template').html();
+        html = _.template(template, {contacts: contacts.toJSON()});
 
-        contacts.each(
-            function(contact) {
-                html = html + '    <li>';
-                html = html + '      <h3>' + contact.escape('name') + '</h3>';
-                html = html + '      <p>Phone: ' + contact.escape('phone') + '</p>';
-                html = html + '      <p>Id: ' + contact.escape('id') + '</p>';
-                html = html + '      <p>';
-                html = html + '        <button type="button" data-icon="arrow-u" onClick="prepareEdit(\'' + contact.escape('id') + '\');">edit</button>';
-                html = html + '        <button type="button" data-icon="delete" onClick="deleteRecord(\'' + contact.escape('id') + '\');">delete</button>';
-                html = html + '      </p>';
-                html = html + '    </li>';
-            }
-        );
-
-        html = html + '  </ul>';
-
-        $('#results').append(html);
+        $('#results').html(html);
         $('#results ul').listview();
     }
+    
+    template = $('#counter-template').html();
+    html = _.template(template, {contacts: contacts});
+    $('#counter').html(html);
 }
 
 function prepareAdd() {
