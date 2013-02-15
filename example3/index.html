@@ -15,11 +15,11 @@
 
     <div data-role="header">
       <h1>CRUD off-line</h1>
-      <a href="#" id="btnAdd" class="button ui-btn-right" data-theme="b" data-icon="plus" onClick="prepareAdd()">Add</a>
+      <a href="#" id="btnAdd" class="button ui-btn-right" data-theme="b" data-icon="plus">Add</a>
     </div>
 
     <div data-role="content">
-      <form>
+      <form data-action="">
         <label for="Name">Name</label>
         <input type="text" id="name">
 
@@ -30,7 +30,7 @@
 
         <div class="ui-body-b ui-body">
           <button id="btnSave" type="button" data-inline="true" data-icon="refresh">Save</button>
-          <button id="btnCancel" type="button" data-inline="true" data-icon="plus" data-theme="c" onClick="cancelAction()">Cancel</button>
+          <button id="btnCancel" type="button" data-inline="true" data-icon="plus" data-theme="c">Cancel</button>
         </div>
       </form>
 
@@ -41,7 +41,7 @@
 
     <div data-role="footer">
       <div id="counter"></div>
-      <button class="button ui-btn-right" type="button" data-icon="alert" data-theme="e" onClick="deleteAll()">Delete all</button>
+      <button id="btnDeleteAll" class="button ui-btn-right" type="button" data-icon="alert" data-theme="e">Delete all</button>
     </div>
   </div>
 
@@ -53,8 +53,8 @@
           <p>Phone: <%= contact.phone %></p>
           <p>Id: <%= contact.id %></p>
           <p>
-            <button type="button" data-icon="arrow-u" onClick="prepareEdit('<%= contact.id %>');">edit</button>
-            <button type="button" data-icon="delete" onClick="deleteRecord('<%= contact.id %>');">delete</button>
+            <button type="button" class="btnEdit" data-icon="arrow-u" data-contact-id="<%= contact.id %>">edit</button>
+            <button type="button" class="btnDelete" data-icon="delete" data-contact-id="<%= contact.id %>">delete</button>
           </p>
         </li>
       <% }); %>
@@ -74,6 +74,7 @@
 
   <script src="assets/js/models/contact.js"></script>
   <script src="assets/js/collections/contacts.js"></script>
+  <script src="assets/js/views/main.js"></script>
   <script src="assets/js/application.js"></script>
 </body>
 </html>
