@@ -1,5 +1,5 @@
 CACHE MANIFEST
-# Version: 15.01.2013.00
+# Version: 17.02.2013.00
 # Changing the version date above the whole cache will be refreshed.
 
 CACHE:
@@ -23,4 +23,5 @@ assets/vendor/backbone-0.9.9/backbone-localstorage.js
 assets/js/application.js
 assets/js/models/contact.js
 assets/js/collections/contacts.js
+assets/js/views/main.js
 assets/css/style.css
