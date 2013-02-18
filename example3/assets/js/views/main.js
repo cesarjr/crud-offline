@@ -29,20 +29,12 @@ var MainView = Backbone.View.extend({
     cancelAction: function() {
         console.debug('MainView.cancelAction');
         
-        $('form').hide();
         $('#btnAdd').removeClass('ui-disabled');
-        $('#results').removeClass('ui-disabled');
-        $('#btnSave').off('click');
+        $('#btnDeleteAll').removeClass('ui-disabled');
+        
+        this.showRecords();        
     },
     
-    resetForm: function() {
-        console.debug('MainView.resetForm');
-
-        $('#name').val('');
-        $('#phone').val('');
-        $('#id').val('');
-    },
- 
     showRecords: function() {
         console.debug('MainView.showRecords');
 
@@ -50,8 +42,7 @@ var MainView = Backbone.View.extend({
             template = $('#contact_list-template').html();
             html = _.template(template, {contacts: contacts.toJSON()});
 
-            $('#results').html(html);
-            $('#results ul').listview();
+            $('#content').html(html).trigger('create');
         }
         
         template = $('#counter-template').html();
@@ -68,16 +59,44 @@ var MainView = Backbone.View.extend({
 
         this.showRecords();
     },
+
+    showForm: function() {
+        console.debug('MainView.showForm');
+
+        template = $('#form-template').html();
+        html = _.template(template);
+
+        $('#content').html(html).trigger('create');
+    },
     
     prepareAdd: function() {
         console.debug('MainView.prepareAdd');
-    
-        this.resetForm();
+
+        this.showForm();       
 
         $('form').data('action', 'add');
-        $('form').show();
         $('#btnAdd').addClass('ui-disabled');
-        $('#results').addClass('ui-disabled');
+        $('#btnDeleteAll').addClass('ui-disabled');        
+        
+        $('#name').focus();
+    },
+    
+    prepareEdit: function(event) {
+        console.debug('MainView.prepareEdit');
+
+        this.showForm();
+        
+        var id = $(event.target).data('contact-id');
+        var contact = contacts.get(id);
+
+        $('#name').val(contact.escape('name'));
+        $('#phone').val(contact.escape('phone'));
+        $('#id').val(contact.escape('id'));
+
+        $('form').data('action', 'edit');
+        $('#btnAdd').addClass('ui-disabled');
+        $('#btnDeleteAll').addClass('ui-disabled');        
+        
         $('#name').focus();
     },
 
@@ -89,23 +108,6 @@ var MainView = Backbone.View.extend({
         contact.destroy();
 
         this.showRecords();
-    },
-    
-    prepareEdit: function(event) {
-        console.debug('MainView.prepareEdit');
-
-        var id = $(event.target).data('contact-id');
-        var contact = contacts.get(id);
-
-        $('#name').val(contact.escape('name'));
-        $('#phone').val(contact.escape('phone'));
-        $('#id').val(contact.escape('id'));
-
-        $('form').data('action', 'edit');
-        $('form').show();
-        $('#btnAdd').addClass('ui-disabled');
-        $('#results').addClass('ui-disabled');
-        $('#name').focus();
     },
     
     saveAction: function() {
@@ -132,7 +134,6 @@ var MainView = Backbone.View.extend({
 
         contacts.add(contact);
         contact.save();
-        this.showRecords();
     },
 
     updateRecord: function() {
@@ -143,8 +144,6 @@ var MainView = Backbone.View.extend({
         contact.set('name', $('#name').val());
         contact.set('phone', $('#phone').val());
         contact.save();
-
-        this.showRecords();
     }
 
 });
